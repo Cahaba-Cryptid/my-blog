@@ -7,21 +7,21 @@ import Admin from './Components/Admin';
 
 const App: React.SFC<IAppProps> = props => {
 
-    
-        return (
-            <>
+
+    return (
+        <>
             <Router>
                 <Navbar />
                 <Switch>
                     <Route exact path="/" component={Home}></Route>
                     {/* <Route exact path="/newblog" comonent={NewBlog}></Route> */}
-                    <Route exact path="/admin" component={Admin}></Route>
+                    <Route exact path="/admin/:id" component={Admin}></Route>
                 </Switch>
             </Router>
-            
-            </>
-        )
-    
+
+        </>
+    )
+
 }
 
 interface IAppProps {

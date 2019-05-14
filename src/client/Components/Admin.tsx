@@ -16,11 +16,12 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
     }, []);
 
     const handleDelete = async () => {
-        let id =props.match.params.id;
+        let id = props.match.params.id;
         try {
             await fetch(`/api/blogs/${id}`, {
                 method: "DELETE"
-            })
+            });
+            props.history.push('/');
         } catch (error) {
             console.log(error);
         }
@@ -38,7 +39,8 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
                     "content-type": "application/json"
                 },
                 body: JSON.stringify(body)
-            })
+            });
+            props.history.push('/');
         } catch (error) {
             console.log(error)
         }
@@ -49,8 +51,13 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
             <div className="card row m-3 w-50 shadow">
                 <div className="card-body p-1">
                     <input className="m-2" value={blog} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setBlog(event.target.value)} />
-                    <button className="btn btn-warning ml-5" onClick={() => handleEdit()}>Edit</button>
-                    <button className="btn btn-danger mx-3" onClick={() => handleDelete()}>Delete</button>
+                    {/* <div className="input-group">
+                        <div className="input-group-prepend">
+                        </div>
+                        <textarea className="form-control" value={blog} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setBlog(event.target.value)}></textarea>
+                    </div> */}
+                    <button className="btn btn-warning ml-5" onClick={() => handleEdit()}>Submit Edit</button>
+                    <button className="btn btn-danger mx-3" onClick={() => handleDelete()}>Delete FOREVER!!!!!!</button>
                 </div>
             </div>
         </>
@@ -58,6 +65,6 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
 }
 
 
-export interface IAdminBlogProps extends RouteComponentProps<{ id: string }>{ };
+export interface IAdminBlogProps extends RouteComponentProps<{ id: string }> { };
 
 export default Admin;

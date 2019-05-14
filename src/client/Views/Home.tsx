@@ -24,7 +24,7 @@ const Home = () => {
 
     return (
         <>
-            <BlogCard blogs={blogs}/>
+            <BlogCard blogs={blogs} />
         </>
     )
 }
