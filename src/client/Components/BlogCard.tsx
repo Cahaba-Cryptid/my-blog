@@ -10,6 +10,7 @@ interface Blog {
     title: string,
     _created: Date,
     content: string,
+    name: string
 }
 
 const BlogCard: React.SFC<IBlogCardProps> = props => {
@@ -20,10 +21,9 @@ const BlogCard: React.SFC<IBlogCardProps> = props => {
                 {props.blogs.map(blog => (
                     <div key={blog.id} className="card m-4 shadow">
                         <div className="card-body">
-                            <h5 className="card-title">{blog.title}:</h5>
-                            <p className="card-text">By: {blog.authorid}</p>
-                            <p className="card-text">{blog.content}</p>
-                            <Link className="btn btn-success my-2" to={`/admin/${blog.id}`}>View Full Blog</Link>
+                            <h5 className="card-title">{blog.title}</h5>
+                            <p className="card-text">By: {blog.name}</p>
+                            <Link className="btn btn-success my-2" to={`/blog/${blog.id}`}>View Full Blog</Link>
                         </div>
                     </div>
                 ))}

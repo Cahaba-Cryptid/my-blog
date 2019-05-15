@@ -6,6 +6,9 @@ const oneBlog = async (id: number) => Query('SELECT * FROM Blogs WHERE id = ?', 
 const newBlog = async (authorid: number, content: string, title: string) => Query('INSERT INTO Blogs (authorid, content, title) VALUES (?)', [authorid, content, title]);
 const delBlog = async (id: number) => Query('DELETE FROM Blogs WHERE id = ?', [id]);
 const updateBlog = async (title: string, content: string, id: number, ) => Query(`UPDATE Blogs Set title = "${title}", content = "${content}" WHERE id = ${id} `);
+const getTags = async (blogid: number) => Query(`CALL spBlogTags(?)`, [blogid]);
+const delTags = async (blogid: number) => Query('DELETE FROM BlogTags WHERE blogid = ?', [blogid]);
+
 
 
 
@@ -15,5 +18,7 @@ export default {
     oneBlog,
     newBlog,
     delBlog,
-    updateBlog
+    updateBlog,
+    getTags,
+    delTags
 };

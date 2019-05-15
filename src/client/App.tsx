@@ -2,8 +2,10 @@ import * as React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './scss/app';
 import Navbar from './Components/Navbar';
-import Home from './Views/Home'
+import Home from './Views/Home';
 import Admin from './Components/Admin';
+import SingleBlog from './Components/SingleBlog';
+import NewBlog from './Components/NewBlog';
 
 const App: React.SFC<IAppProps> = props => {
 
@@ -14,8 +16,9 @@ const App: React.SFC<IAppProps> = props => {
                 <Navbar />
                 <Switch>
                     <Route exact path="/" component={Home}></Route>
-                    {/* <Route exact path="/newblog" comonent={NewBlog}></Route> */}
+                    <Route exact path="/newblog" comonent={NewBlog}></Route>
                     <Route exact path="/admin/:id" component={Admin}></Route>
+                    <Route exact path="/blog/:id" component={SingleBlog}></Route>
                 </Switch>
             </Router>
 

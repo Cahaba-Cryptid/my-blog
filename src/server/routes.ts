@@ -35,6 +35,8 @@ routes.post('/api/blogs', async (req, res) => {
 
 routes.delete('/api/blogs/:id', async (req, res) => {
     try {
+        //delete a blog id from BlogTags then Blogs table
+        await db.Blogs.delTags(req.params.id)
         res.json(await db.Blogs.delBlog(req.params.id))
     } catch (error) {
         console.log(error);
@@ -52,7 +54,19 @@ routes.put('/api/blogs/:id', async (req, res) => {
         console.log(error);
         res.sendStatus(500);
     }
+});
+
+routes.get('/api/blogtags/:blogid', async (req, res) => {
+    try {
+        let [r] = await db.Blogs.getTags(req.params.blogid)
+        res.json(r)
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
 })
+
+
 
 
 export default routes;
