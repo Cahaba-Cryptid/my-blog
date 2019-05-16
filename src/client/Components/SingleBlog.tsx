@@ -39,7 +39,6 @@ return (
                             {tags.map(tag => {
                                 return(
                                     <>
-                                    
                                         <p className=" mx-2 badge badge-pill badge-info" key={blog.id}>{tag.name}</p>
                                     </>
                                 )

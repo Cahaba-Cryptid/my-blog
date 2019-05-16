@@ -30,7 +30,8 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
     const handleEdit = async () => {
         let id = props.match.params.id
         let body = {
-            blog
+            title: 'edited',
+            content: blog
         }
         try {
             await fetch(`/api/blogs/${id}`, {
@@ -50,14 +51,16 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
         <>
             <div className="card row m-3 w-50 shadow">
                 <div className="card-body p-1">
-                    <input className="m-2" value={blog} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setBlog(event.target.value)} />
+                    {/* <input className="m-2" value={blog} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setBlog(event.target.value)} /> */}
                     <div className="input-group">
                         <div className="input-group-prepend">
                         </div>
-                        <textarea rows={5} className="form-control" value={blog} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setBlog(event.target.value)}/>
+                        <textarea rows={5} className="form-control m-2" value={blog} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setBlog(event.target.value)} />
                     </div>
-                    <button className="btn btn-warning ml-5" onClick={() => handleEdit()}>Submit Edit</button>
-                    <button className="btn btn-danger mx-3" onClick={() => handleDelete()}>Delete FOREVER!!!!!!</button>
+                    <div className="row">
+                        <button className="btn btn-warning ml-5" onClick={() => handleEdit()}>Submit Edit</button>
+                        <button className="btn btn-danger mx-3" onClick={() => handleDelete()}>Delete FOREVER!!!!!!</button>
+                    </div>
                 </div>
             </div>
         </>

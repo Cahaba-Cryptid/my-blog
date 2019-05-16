@@ -12,7 +12,7 @@ routes.get('/api/blogs', async (req, res) => {
     }
 });
 
-routes.get('/api/blogs/:id', async (req,res) => {
+routes.get('/api/blogs/:id', async (req, res) => {
     try {
         res.json((await db.Blogs.oneBlog(req.params.id))[0]);
     } catch (error) {
@@ -23,10 +23,12 @@ routes.get('/api/blogs/:id', async (req,res) => {
 
 routes.post('/api/blogs', async (req, res) => {
     try {
+        let tagid = req.body.tagid;
         let authorid = req.body.authorid;
         let content = req.body.content;
         let title = req.body.title
-        res.json(await db.Blogs.newBlog(authorid, content, title));
+        let result: any = await db.Blogs.newBlog(authorid, content, title);
+        res.json(await db.Blogs.addBlogTag(result.insertId, tagid))
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
@@ -48,7 +50,7 @@ routes.put('/api/blogs/:id', async (req, res) => {
     try {
         let title = req.body.title;
         let content = req.body.content;
-        let id = req.body.id;
+        let id = req.params.id;
         res.json(await db.Blogs.updateBlog(title, content, id));
     } catch (error) {
         console.log(error);
@@ -59,13 +61,22 @@ routes.put('/api/blogs/:id', async (req, res) => {
 routes.get('/api/blogtags/:blogid', async (req, res) => {
     try {
         let [r] = await db.Blogs.getTags(req.params.blogid)
-        res.json(r)
+        res.json(r);
     } catch (error) {
         console.log(error);
         res.sendStatus(500);
     }
-})
+});
 
+routes.get('/api/tags', async (req, res) => {
+    try {
+        let r = await db.Blogs.getAllTags()
+        res.json(r);
+    } catch (error) {
+        console.log(error);
+        res.sendStatus(500);
+    }
+});
 
 
 

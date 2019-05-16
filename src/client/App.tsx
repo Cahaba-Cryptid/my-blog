@@ -16,7 +16,7 @@ const App: React.SFC<IAppProps> = props => {
                 <Navbar />
                 <Switch>
                     <Route exact path="/" component={Home}></Route>
-                    <Route exact path="/newblog" comonent={NewBlog}></Route>
+                    <Route exact path="/newblog" component={NewBlog}></Route>
                     <Route exact path="/admin/:id" component={Admin}></Route>
                     <Route exact path="/blog/:id" component={SingleBlog}></Route>
                 </Switch>
