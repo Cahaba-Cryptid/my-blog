@@ -1,9 +1,19 @@
 import * as express from 'express';
-import db from './db';
+import { RequestHandler } from 'express-serve-static-core';
 
-const routes = express.Router();
+import db from '../../db';
 
-routes.get('/api/blogs', async (req, res) => {
+const router = express.Router();
+
+// const isAdmin: RequestHandler = (req, res, next) => {
+//     if(!req.user || req.user.role !== 'admin') {
+//         return  res.sendStatus(401);
+//     } else {
+//         return next();
+//     }
+// }
+
+router.get('/blogs', async (req, res) => {
     try {
         res.json(await db.Blogs.allBlogs())
     } catch (error) {
@@ -12,7 +22,7 @@ routes.get('/api/blogs', async (req, res) => {
     }
 });
 
-routes.get('/api/blogs/:id', async (req, res) => {
+router.get('/blogs/:id', async (req, res) => {
     try {
         res.json((await db.Blogs.oneBlog(req.params.id))[0]);
     } catch (error) {
@@ -21,7 +31,7 @@ routes.get('/api/blogs/:id', async (req, res) => {
     }
 });
 
-routes.post('/api/blogs', async (req, res) => {
+router.post('/blogs', async (req, res) => {
     try {
         let tagid = req.body.tagid;
         let authorid = req.body.authorid;
@@ -35,7 +45,7 @@ routes.post('/api/blogs', async (req, res) => {
     }
 });
 
-routes.delete('/api/blogs/:id', async (req, res) => {
+router.delete('/blogs/:id', async (req, res) => {
     try {
         //delete a blog id from BlogTags then Blogs table
         await db.Blogs.delTags(req.params.id)
@@ -46,7 +56,7 @@ routes.delete('/api/blogs/:id', async (req, res) => {
     }
 });
 
-routes.put('/api/blogs/:id', async (req, res) => {
+router.put('/blogs/:id', async (req, res) => {
     try {
         let title = req.body.title;
         let content = req.body.content;
@@ -58,26 +68,4 @@ routes.put('/api/blogs/:id', async (req, res) => {
     }
 });
 
-routes.get('/api/blogtags/:blogid', async (req, res) => {
-    try {
-        let [r] = await db.Blogs.getTags(req.params.blogid)
-        res.json(r);
-    } catch (error) {
-        console.log(error);
-        res.sendStatus(500);
-    }
-});
-
-routes.get('/api/tags', async (req, res) => {
-    try {
-        let r = await db.Blogs.getAllTags()
-        res.json(r);
-    } catch (error) {
-        console.log(error);
-        res.sendStatus(500);
-    }
-});
-
-
-
-export default routes;
+export default router;
