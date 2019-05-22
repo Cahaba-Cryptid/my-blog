@@ -13,7 +13,7 @@ const updateBlog = async (title: string, content: string, id: number) => Query(`
 
 const getTags = async (blogid: number) => Query(`CALL spBlogTags(?)`, [blogid]);
 
-const delTags = async (blogid: number) => Query('DELETE FROM BlogTags WHERE blogid = ?', [blogid]);
+const delTags = async (blogid: number) => Query('DELETE FROM BlogTags WHERE blogid = (?)', [blogid]);
 
 const getAllTags = async () => Query('SELECT * FROM Tags');
 

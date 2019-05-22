@@ -88,6 +88,18 @@ CALL spBlogTags(6);
 INSERT INTO Tags(name)
 VALUES ("Work"), ("Home Life"), ("Liesure");
 
+CREATE TABLE Tokens(
+id int not null auto_increment primary key,
+authorid int,
+token text,
+expires datetime,
+_created datetime default current_timestamp);
+
+alter table Tokens
+add constraint fk_Tokens_authorid
+foreign key(authorid)
+references Authors(id);
+
 
 
 
