@@ -5,15 +5,15 @@ import db from '../../db';
 
 const router = express.Router();
 
-// const isAdmin: RequestHandler = (req, res, next) => {
-//     if(!req.user || req.user.role !== 'admin') {
-//         return  res.sendStatus(401);
-//     } else {
-//         return next();
-//     }
-// }
+const isAdmin: RequestHandler = (req, res, next) => {
+    if(!req.user || req.user.role !== 'admin') {
+        return  res.sendStatus(401);
+    } else {
+        return next();
+    }
+}
 
-router.get('/blogs', async (req, res) => {
+router.get('/', isAdmin, async (req, res) => {
     try {
         res.json(await db.Blogs.allBlogs())
     } catch (error) {
@@ -22,7 +22,7 @@ router.get('/blogs', async (req, res) => {
     }
 });
 
-router.get('/blogs/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         res.json((await db.Blogs.oneBlog(req.params.id))[0]);
     } catch (error) {
@@ -31,7 +31,7 @@ router.get('/blogs/:id', async (req, res) => {
     }
 });
 
-router.post('/blogs', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         let tagid = req.body.tagid;
         let authorid = req.body.authorid;
@@ -45,7 +45,7 @@ router.post('/blogs', async (req, res) => {
     }
 });
 
-router.delete('/blogs/:id', async (req, res) => {
+router.delete('/:id', isAdmin, async (req, res) => {
     try {
         //delete a blog id from BlogTags then Blogs table
         await db.Blogs.delTags(req.params.id)
@@ -56,7 +56,7 @@ router.delete('/blogs/:id', async (req, res) => {
     }
 });
 
-router.put('/blogs/:id', async (req, res) => {
+router.put('/:id', isAdmin, async (req, res) => {
     try {
         let title = req.body.title;
         let content = req.body.content;

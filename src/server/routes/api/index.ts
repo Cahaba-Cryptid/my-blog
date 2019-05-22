@@ -5,12 +5,12 @@ import blogsRouter from './blogs';
 
 const router= express.Router();
 
-// router.use((req, res, next) => {
-//     passport.authenticate('bearer', { session: false}, (err, author, info) => {
-//         if(author) req.user = author;
-//         return next();
-//     });
-// });
+router.use((req, res, next) => {
+    passport.authenticate('bearer', { session: false }, (err, author, info) => {
+        if(author) req.user = author;
+        return next();
+    })(req, res, next);
+});
 
 router.use('/blogs', blogsRouter);
 

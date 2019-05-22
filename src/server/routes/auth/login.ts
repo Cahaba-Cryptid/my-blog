@@ -4,7 +4,7 @@ import * as passport from 'passport';
 import { CreateToken } from '../../utils/security/tokens';
 
 
-const router = express.Router();
+const router = express.Router(); 
 
 router.post('/', passport.authenticate('local'), async (req, res, next) => {
     try {
