@@ -13,7 +13,7 @@ const isAdmin: RequestHandler = (req, res, next) => {
     }
 }
 
-router.get('/', isAdmin, async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         res.json(await db.Blogs.allBlogs())
     } catch (error) {
@@ -31,7 +31,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', isAdmin, async (req, res) => {
     try {
         let tagid = req.body.tagid;
         let authorid = req.body.authorid;

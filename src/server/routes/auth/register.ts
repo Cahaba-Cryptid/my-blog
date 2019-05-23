@@ -10,7 +10,8 @@ router.post('/', async (req, res, next) => {
     try {
         let author = req.body;
         author.password = HashPassword(req.body.password);
-        let [result]: any = await DB.Authors.insertAuthor(author)
+        let data = Object.values(author); 
+        let [result]: any = await DB.Authors.insertAuthor(data);
         let token = await CreateToken({ authorid: result.insertId });
         res.json({
             token,
@@ -21,6 +22,6 @@ router.post('/', async (req, res, next) => {
         console.log(error)
         res.sendStatus(500);
     }
-})
+});
 
 export default router;

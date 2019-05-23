@@ -6,6 +6,7 @@ import Home from './Views/Home';
 import Admin from './Components/Admin';
 import SingleBlog from './Components/SingleBlog';
 import NewBlog from './Components/NewBlog';
+import Login from './Components/passProtected/Login';
 
 const App: React.SFC<IAppProps> = props => {
 
@@ -15,6 +16,7 @@ const App: React.SFC<IAppProps> = props => {
             <Router>
                 <Navbar />
                 <Switch>
+                    <Route exact path="/login" component={Login}></Route>
                     <Route exact path="/" component={Home}></Route>
                     <Route exact path="/newblog" component={NewBlog}></Route>
                     <Route exact path="/admin/:id" component={Admin}></Route>
