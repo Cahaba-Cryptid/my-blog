@@ -11,11 +11,12 @@ router.post('/', async (req, res, next) => {
         let author = req.body;
         author.password = HashPassword(req.body.password);
         let data = Object.values(author); 
-        let [result]: any = await DB.Authors.insertAuthor(data);
+        let result: any = await DB.Authors.insertAuthor(data);
         let token = await CreateToken({ authorid: result.insertId });
+        console.log(result);
         res.json({
             token,
-            role: 'guest',
+            role: 'admin',
             authorid: result.insertId
         });
     } catch (error) {

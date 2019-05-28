@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { json } from '../utils/api';
 
 const SinlgeBlog: React.SFC<ISinlgeBlogProps> = props => {
 
@@ -15,10 +16,12 @@ const SinlgeBlog: React.SFC<ISinlgeBlogProps> = props => {
     });
 
     const getBlog = async () => {
-        let r2 = await fetch(`/api/blogtags/${props.match.params.id}`)
-        let tags = await r2.json()
-        let r = await fetch(`/api/blogs/${props.match.params.id}`);
-        let blog = await r.json();
+        // let r2 = await fetch(`/api/blogtags/${props.match.params.id}`)
+        // let tags = await r2.json()
+        // let r = await fetch(`/api/blogs/${props.match.params.id}`);
+        // let blog = await r.json();
+        let blog = await json(`/api/blogs/${props.match.params.id}`);
+        let tags = await json(`/api/blogtags/${props.match.params.id}`);
         setTags(tags);
         console.log(tags)
         setBlog(blog);

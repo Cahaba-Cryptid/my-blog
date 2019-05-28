@@ -13,7 +13,6 @@ const Login: React.SFC<ILogin> = props => {
 
     }
 
-
     return (
         <>
             <>
