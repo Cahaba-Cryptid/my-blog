@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { useState, useEffect } from 'react';
+import { json, Author } from '../utils/api';
 
 const Admin: React.SFC<IAdminBlogProps> = props => {
+
     const [blog, setBlog] = useState<string>('');
 
     const getBlog = async () => {
@@ -13,6 +15,12 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
 
     useEffect(() => {
         getBlog();
+    }, []);
+
+    useEffect(() => {
+        if(Author || Author.authotid === null || Author.role !== 'admin') {
+            props.history.replace('/login');
+        }
     }, []);
 
     const handleDelete = async () => {

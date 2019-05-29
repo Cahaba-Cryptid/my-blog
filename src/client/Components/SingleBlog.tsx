@@ -5,7 +5,7 @@ import { json } from '../utils/api';
 
 const SinlgeBlog: React.SFC<ISinlgeBlogProps> = props => {
 
-    const [tags, setTags] = useState<Array<{name: string}>>([])
+    const [tags, setTags] = useState<Array<{name: string, tagid: number}>>([])
     const [blog, setBlog] = useState<Blog>({
         id: null,
         authorid: null,
@@ -16,14 +16,10 @@ const SinlgeBlog: React.SFC<ISinlgeBlogProps> = props => {
     });
 
     const getBlog = async () => {
-        // let r2 = await fetch(`/api/blogtags/${props.match.params.id}`)
-        // let tags = await r2.json()
-        // let r = await fetch(`/api/blogs/${props.match.params.id}`);
-        // let blog = await r.json();
-        let blog = await json(`/api/blogs/${props.match.params.id}`);
-        let tags = await json(`/api/blogtags/${props.match.params.id}`);
+        let id = props.match.params.id;
+        let blog = await json(`/api/blogs/${id}`);
+        let tags = await json(`/api/blogtags/${id}`);
         setTags(tags);
-        console.log(tags)
         setBlog(blog);
     }
     useEffect(() => {
@@ -42,7 +38,7 @@ return (
                             {tags.map(tag => {
                                 return(
                                     <>
-                                        <p className=" mx-2 badge badge-pill badge-info" key={blog.id}>{tag.name}</p>
+                                        <p className=" mx-2 badge badge-pill badge-info" key={tag.tagid}>{tag.name}</p>
                                     </>
                                 )
                             })}
@@ -51,11 +47,12 @@ return (
                     </div>
             </main>
     </>
-)
+);
 
 }
 
 interface ISinlgeBlogProps extends RouteComponentProps<{id: string}>{}
+
 
 interface Blog {
     id: number,
@@ -65,4 +62,5 @@ interface Blog {
     content: string,
     name: string
 }
+
 export default SinlgeBlog;

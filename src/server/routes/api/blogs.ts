@@ -11,7 +11,7 @@ const isAdmin: RequestHandler = (req, res, next) => {
     } else {
         return next();
     }
-}
+};
 
 router.get('/', async (req, res) => {
     try {

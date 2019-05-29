@@ -31,8 +31,7 @@ const NewBlog: React.SFC<INewBlogProps> = props => {
                 method: "POST",
                 headers: { "content-type": "application/json", "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpZCI6MSwidG9rZW5pZCI6MiwidW5pcXVlIjoiZTNlMWEwMTkzZTI2Nzc4ZGVmM2E0MWQwMTkwYThmYzM3OTM3OTE3N2Q2YmFlODkzYzhlZTk5YTAzYzM4YjVjNCIsImlhdCI6MTU1ODU1Mjg1Nn0.15Cjla_PutYH36hJ9OuHdvaXwLp7ky8A7Cp6N3cypZw" },
                 body: JSON.stringify(body)
-            })
-            console.log('Got it!');
+            });
             props.history.push('/');
         } catch (error) {
             console.log(error)
@@ -44,7 +43,7 @@ const NewBlog: React.SFC<INewBlogProps> = props => {
     }, []);
 
     const getTags = async () => {
-        let r = await fetch('/api/tags')
+        let r = await fetch('/api/blogtags')
         let tags = await r.json();
         setTags(tags)
     }

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { RouteComponentProps } from 'react-router';
-
+import { RouteComponentProps } from 'react-router-dom';
+import { json, SetToken } from '../../utils/api';
 
 const Login: React.SFC<ILogin> = props => {
 
@@ -10,6 +10,26 @@ const Login: React.SFC<ILogin> = props => {
 
     const handleLogin = async () => {
         event.preventDefault()
+
+        try {
+            let result = await json('/auth/login', 'POST', {
+                email,
+                password,
+            });
+
+            if(result) {
+                SetToken(result.token, { userid: result.userid, role: result.role});
+                if(result.role === 'admin') {
+                    props.history.push('/admin')
+                } else {
+                    props.history.push('/');
+                }
+            } else {
+                //checking a login status
+            }
+        } catch (error) {
+            throw(error);
+        }
 
     }
 

@@ -11,7 +11,7 @@ const delBlog = async (id: number) => Query('DELETE FROM Blogs WHERE id = ?', [i
 
 const updateBlog = async (title: string, content: string, id: number) => Query(`UPDATE Blogs Set title = "${title}", content = "${content}" WHERE id = ${id} `);
 
-const getTags = async (blogid: number) => Query(`CALL spBlogTags(?)`, [blogid]);
+const getBlogTags = async (blogid: number) => Query(`CALL spBlogTags(?)`, [blogid]);
 
 const delTags = async (blogid: number) => Query('DELETE FROM BlogTags WHERE blogid = (?)', [blogid]);
 
@@ -26,7 +26,7 @@ export default {
     newBlog,
     delBlog,
     updateBlog,
-    getTags,
+    getBlogTags,
     delTags,
     getAllTags,
     addBlogTag

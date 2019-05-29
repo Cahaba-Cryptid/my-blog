@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as passport from 'passport';
 
 import blogsRouter from './blogs';
+import tagsRouter from './tags';
 
 const router= express.Router();
 
@@ -13,5 +14,6 @@ router.use((req, res, next) => {
 });
 
 router.use('/blogs', blogsRouter);
+router.use('/blogtags', tagsRouter)
 
 export default router;
