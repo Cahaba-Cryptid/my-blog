@@ -17,8 +17,8 @@ const SinlgeBlog: React.SFC<ISinlgeBlogProps> = props => {
 
     const getBlog = async () => {
         let id = props.match.params.id;
-        let blog = await json(`/api/blogs/${id}`);
-        let tags = await json(`/api/blogtags/${id}`);
+        let blog = await json(`/api/blogs/${id}`, 'GET');
+        let tags = await json(`/api/blogtags/${id}`, 'GET');
         setTags(tags);
         setBlog(blog);
     }

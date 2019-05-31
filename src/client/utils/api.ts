@@ -6,7 +6,7 @@ export let Author: any = {
     role: localStorage.getItem('role') || null
 };
 
-export const json = async <T = any>(uri: string, method: string = 'GET', body?: {}) => {
+export const json = async <T = any>(uri: string, method: string, body?: {}) => {
 
     let headers: any = {
         'Content-type': 'application/json'
@@ -33,6 +33,8 @@ export const json = async <T = any>(uri: string, method: string = 'GET', body?: 
     }
 
 };
+
+
 
 export const SetToken = (token: string, author: {} = { authorid: undefined, role: 'guest'}) => {
     Token = token;
