@@ -35,13 +35,8 @@ return (
                             <p className="card-text">By: {blog.name}</p>
                             <p className="card-text">{blog.content}</p>
                             <p>Tags: </p>
-                            {tags.map(tag => {
-                                return(
-                                    <>
-                                        <p className=" mx-2 badge badge-pill badge-info" key={tag.tagid}>{tag.name}</p>
-                                    </>
-                                )
-                            })}
+                            {/*implicit sinlge line return*/}
+                            {tags.map((tag, i) => <p className=" mx-2 badge badge-pill badge-info" key={i}>{tag.name}</p>)}
                             <Link className="btn btn-success my-2 mx-1 float-right" to={`/admin/${blog.id}`}>Admin</Link>
                         </div>
                     </div>

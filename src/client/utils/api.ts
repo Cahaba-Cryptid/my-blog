@@ -18,11 +18,8 @@ export const json = async <T = any>(uri: string, method: string = 'GET', body?: 
 
     try {
         let result = await fetch(uri, {
-            //shorthand can be just
-            //method,
-            //headers
-            method: method,
-            headers: headers,
+            method,
+            headers,
             body: JSON.stringify(body)
         });
         if (result.ok) {

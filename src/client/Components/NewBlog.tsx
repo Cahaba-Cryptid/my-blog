@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
+import { json } from '../utils/api';
 
 interface INewBlogProps extends RouteComponentProps {
 
@@ -22,10 +23,6 @@ const NewBlog: React.SFC<INewBlogProps> = props => {
             content: newBlog,
             tagid: selectedTag
         }
-        //can add if/else to handle sumbit without a tag selected.
-        // if () {
-            
-        // }
         try {
             await fetch('/api/blogs', {
                 method: "POST",
