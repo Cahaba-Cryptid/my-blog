@@ -18,7 +18,7 @@ const Home = () => {
     const getBlogs = async () => {
         // let r = await fetch('/api/blogs');
         // let blogs = await r.json();
-        let blogs = await json('/api/blogs');
+        let blogs = await json('/api/blogs', 'GET');
         setBlogs(blogs);
     }
     useEffect(() => {
