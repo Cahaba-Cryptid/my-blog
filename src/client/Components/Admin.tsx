@@ -18,7 +18,7 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
     }, []);
 
     useEffect(() => {
-        if(Author || Author.authotid === null || Author.role !== 'admin') {
+        if(!Author || Author.authorid === null || Author.role !== 'admin') {
             props.history.replace('/login');
         }
     }, []);
