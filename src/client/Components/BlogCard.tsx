@@ -18,7 +18,7 @@ const BlogCard: React.SFC<IBlogCardProps> = props => {
 
     return (
         <>
-            <main className="col-md-12">
+            <main className="col-md-6">
                 {props.blogs.map(blog => (
                     <div key={blog.id} className="card m-4 shadow">
                         <div className="card-body">

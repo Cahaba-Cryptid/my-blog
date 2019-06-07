@@ -7,6 +7,7 @@ import Admin from './Components/Admin';
 import SingleBlog from './Components/SingleBlog';
 import NewBlog from './Components/NewBlog';
 import Login from './Components/passProtected/Login';
+import Register from './Components/Register';
 
 const App: React.SFC<IAppProps> = props => {
 
@@ -21,9 +22,9 @@ const App: React.SFC<IAppProps> = props => {
                     <Route exact path="/newblog" component={NewBlog}></Route>
                     <Route exact path="/admin/:id" component={Admin}></Route>
                     <Route exact path="/blog/:id" component={SingleBlog}></Route>
+                    <Route exact path="/register" component={Register}></Route>
                 </Switch>
             </Router>
-
         </>
     )
 

@@ -10,4 +10,4 @@ export default {
     findOneByEmail,
     findOneById,
     insertAuthor
-}
+}; 
