@@ -19,7 +19,6 @@ const Navbar: React.SFC<IAppProps> = () => {
           </div>
         </nav>
       </div>
-
     </>
   )
 };

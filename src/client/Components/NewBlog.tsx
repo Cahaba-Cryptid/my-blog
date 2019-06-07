@@ -25,11 +25,6 @@ const NewBlog: React.SFC<INewBlogProps> = props => {
         }
         try {
             await json('/api/blogs', 'POST', body);
-            // await fetch('/api/blogs', {
-            //     method: "POST",
-            //     headers: { "content-type": "application/json", "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpZCI6MSwidG9rZW5pZCI6MiwidW5pcXVlIjoiZTNlMWEwMTkzZTI2Nzc4ZGVmM2E0MWQwMTkwYThmYzM3OTM3OTE3N2Q2YmFlODkzYzhlZTk5YTAzYzM4YjVjNCIsImlhdCI6MTU1ODU1Mjg1Nn0.15Cjla_PutYH36hJ9OuHdvaXwLp7ky8A7Cp6N3cypZw" },
-            //     body: JSON.stringify(body)
-            // });
             props.history.push('/');
         } catch (error) {
             console.log(error)
@@ -49,7 +44,7 @@ const NewBlog: React.SFC<INewBlogProps> = props => {
     return (
         <>
             <main className="container">
-                <form className="form-group p-3 shadow m-2" onSubmit={() => addBlog()}>
+                <form className="form-group p-3 shadow m-2 bg-light" onSubmit={() => addBlog()}>
                     <textarea rows={1} className="form-control m-2" value={newBlogTitle} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setNewBlogTitle(event.target.value)} placeholder="Blog Title" />
                     <textarea rows={5} className="form-control m-2" value={newBlog} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setNewBlog(event.target.value)} placeholder="Blog Content" />
                     <select value={selectedTag} onChange={(event: React.ChangeEvent<HTMLSelectElement>) => setSeletedTag(event.target.value)}>

@@ -38,8 +38,6 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
         }
     }
 
-
-    //impolement json utilitiy. Already imported.
     const handleEdit = async () => {
         let id = props.match.params.id
         let body = {
@@ -48,13 +46,6 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
 
         }
         try {
-            // await fetch(`/api/blogs/${id}`, {
-            //     method: "PUT",
-            //     headers: {
-            //         "Content-type": "application/json"
-            //     },
-            //     body: JSON.stringify(body)
-            // });
             await json(`/api/blogs/${id}`, 'PUT', body)
             props.history.push('/');
         } catch (error) {
@@ -64,17 +55,17 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
 
     return (
         <>
-            <div className="card row m-3 w-50 shadow">
+            <div className="card row m-3 w-50 shadow bg-light">
                 <div className="card-body p-1">
                     <div className="input-group">
                         <div className="input-group-prepend">
                         </div>
-                        <textarea rows={2} value={title} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setTitle(event.target.value)}></textarea>
+                        <textarea className=" row form-control m-2" rows={2} value={title} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setTitle(event.target.value)}></textarea>
                         <textarea rows={5} className=" row form-control m-2" value={blog} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setBlog(event.target.value)} />
                     </div>
                     <div className="row">
                         <button className="btn btn-warning ml-5" onClick={() => handleEdit()}>Submit Edit</button>
-                        <button className="btn btn-danger mx-3" onClick={() => handleDelete()}>Delete FOREVER!!!!!!</button>
+                        <button className="btn btn-danger mx-3" onClick={() => handleDelete()}>Delete blog post</button>
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@ const Home = () => {
 
     return (
         <>
-            <main className="row bg-secondary">
+            <main className="row">
                 <BlogCard blogs={blogs} />
             </main>
         </>
