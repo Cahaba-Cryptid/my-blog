@@ -18,7 +18,7 @@ const Login: React.SFC<ILogin> = props => {
             });
 
             if (result) {
-                SetToken(result.token, { userid: result.userid, role: result.role });
+                SetToken(result.token, { userid: result.authroid, role: result.role });
                 if (result.role === 'admin') {
                     props.history.push('/admin')
                 } else {
@@ -38,11 +38,11 @@ const Login: React.SFC<ILogin> = props => {
                     <div className="input-group">
                         <div className="input-group-prepend">
                         </div>
-                        <input type="email" placeholder="Email" value={email} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)} />
-                        <input type="password" placeholder="password" value={password} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)} />
+                        <input className="m-2" type="email" placeholder="Email" value={email} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setEmail(event.target.value)} />
+                        <input className="m-2" type="password" placeholder="password" value={password} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setPassword(event.target.value)} />
                     </div>
                     <div>
-                        <button className="btn btn-success" onClick={() => handleLogin()}>Login</button>
+                        <button className="btn btn-success m-2" onClick={() => handleLogin()}>Login</button>
                     </div>
                 </div>
             </div>

@@ -48,21 +48,21 @@ const NewBlog: React.SFC<INewBlogProps> = props => {
 
     return (
         <>
-            <form className="form-group p-3" onSubmit={() => addBlog()}>
-                {/* <input type="text" value={newBlogTitle} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setNewBlogTitle(event.target.value)} placeholder="Blog Title" />
-                <input type="text" value={newBlog} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setNewBlog(event.target.value)} placeholder="Blog content" /> */}
-                <textarea rows={1} className="form-control m-2" value={newBlogTitle} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setNewBlogTitle(event.target.value)} placeholder="Blog Title"/>
-                <textarea rows={5} className="form-control m-2" value={newBlog} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setNewBlog(event.target.value)} placeholder="Blog Content"/>
-                <select value={selectedTag} onChange={(event: React.ChangeEvent<HTMLSelectElement>) => setSeletedTag(event.target.value)}>
-                    <option value="0">Select a tag</option>
-                    {tags.map(tag => {
-                        return (
-                            <option key={tag.id} value={tag.id}>{tag.name}</option>
-                        )
-                    })};
+            <main className="container">
+                <form className="form-group p-3 shadow m-2" onSubmit={() => addBlog()}>
+                    <textarea rows={1} className="form-control m-2" value={newBlogTitle} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setNewBlogTitle(event.target.value)} placeholder="Blog Title" />
+                    <textarea rows={5} className="form-control m-2" value={newBlog} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setNewBlog(event.target.value)} placeholder="Blog Content" />
+                    <select value={selectedTag} onChange={(event: React.ChangeEvent<HTMLSelectElement>) => setSeletedTag(event.target.value)}>
+                        <option value="0">Select a tag</option>
+                        {tags.map(tag => {
+                            return (
+                                <option key={tag.id} value={tag.id}>{tag.name}</option>
+                            )
+                        })};
                 </select>
-                <button className="btn btn-primary mx-5" onClick={() => addBlog()}>Submit Blog</button>
-            </form>
+                    <button className="btn btn-primary mx-5" onClick={() => addBlog()}>Submit Blog</button>
+                </form>
+            </main>
         </>
     )
 

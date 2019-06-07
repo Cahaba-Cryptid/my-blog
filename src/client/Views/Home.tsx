@@ -16,8 +16,6 @@ const Home = () => {
     const [blogs, setBlogs] = useState<IBlog[]>([]);
 
     const getBlogs = async () => {
-        // let r = await fetch('/api/blogs');
-        // let blogs = await r.json();
         let blogs = await json('/api/blogs', 'GET');
         setBlogs(blogs);
     }

@@ -30,6 +30,7 @@ const Register: React.SFC<IRegisterProps> = props => {
     }
 
     return (
+        <>
             <main className="row bg-secondary">
                 <div className="card row m-3 w-50 shadow">
                     <div className="card-body p-1">
@@ -47,6 +48,7 @@ const Register: React.SFC<IRegisterProps> = props => {
                     </div>
                 </div>
             </main>
+        </>
     )
 
 }

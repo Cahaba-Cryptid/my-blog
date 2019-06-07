@@ -6,6 +6,7 @@ import { json, Author } from '../utils/api';
 const Admin: React.SFC<IAdminBlogProps> = props => {
 
     const [blog, setBlog] = useState<string>('');
+    const [title, setTitle] = useState<string>('');
 
     const getBlog = async () => {
         let r = await fetch(`/api/blogs/${props.match.params.id}`);
@@ -26,29 +27,35 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
     const handleDelete = async () => {
         let id = props.match.params.id;
         try {
-            await fetch(`/api/blogs/${id}`, {
-                method: "DELETE"
-            });
+            // await fetch(`/api/blogs/${id}`, {
+            //     method: "DELETE"
+            // });
+            // props.history.push('/');
+            await json(`/api/blogs/${id}`, 'DELETE')
             props.history.push('/');
         } catch (error) {
             console.log(error);
         }
     }
 
+
+    //impolement json utilitiy. Already imported.
     const handleEdit = async () => {
         let id = props.match.params.id
         let body = {
-            title: 'edited',
-            content: blog
+            title: title,
+            content: blog,
+
         }
         try {
-            await fetch(`/api/blogs/${id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify(body)
-            });
+            // await fetch(`/api/blogs/${id}`, {
+            //     method: "PUT",
+            //     headers: {
+            //         "Content-type": "application/json"
+            //     },
+            //     body: JSON.stringify(body)
+            // });
+            await json(`/api/blogs/${id}`, 'PUT', body)
             props.history.push('/');
         } catch (error) {
             console.log(error)
@@ -59,11 +66,11 @@ const Admin: React.SFC<IAdminBlogProps> = props => {
         <>
             <div className="card row m-3 w-50 shadow">
                 <div className="card-body p-1">
-                    {/* <input className="m-2" value={blog} onChange={(event: React.ChangeEvent<HTMLInputElement>) => setBlog(event.target.value)} /> */}
                     <div className="input-group">
                         <div className="input-group-prepend">
                         </div>
-                        <textarea rows={5} className="form-control m-2" value={blog} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setBlog(event.target.value)} />
+                        <textarea rows={2} value={title} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setTitle(event.target.value)}></textarea>
+                        <textarea rows={5} className=" row form-control m-2" value={blog} onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setBlog(event.target.value)} />
                     </div>
                     <div className="row">
                         <button className="btn btn-warning ml-5" onClick={() => handleEdit()}>Submit Edit</button>
