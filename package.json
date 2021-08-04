@@ -46,7 +46,7 @@
     "react-router-dom": "^5.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "tar": "^4.4.8",
+    "tar": "^4.4.15",
     "ts-loader": "^5.3.3",
     "typescript": "^3.4.3",
     "uuid": "^3.3.2",
